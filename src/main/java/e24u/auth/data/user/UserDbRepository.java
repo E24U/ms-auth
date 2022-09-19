@@ -36,6 +36,12 @@ public class UserDbRepository {
         jdbc.update("delete from users where id = ?",
                 id);
     }
+    public User userByLogin(String login) {
+        return jdbc.query("select u.id, u.login, u.password from users as u left join users_roles ur on u.id = user_id where u.login = ?", (rs, row) -> {
+            return new User((UUID.fromString(rs.getString("id"))),
+                    rs.getString("login"), rs.getString("password"), new HashSet<>());
+        }, login).stream().findFirst().orElse(new User());
+    }
 }
 
 
