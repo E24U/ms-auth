@@ -12,7 +12,7 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-@Table(name = "roles")
+@Table("roles")
 public class Role {
 
     @Id
