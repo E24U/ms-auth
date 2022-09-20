@@ -1,6 +1,5 @@
 package e24u.auth.data.user;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
@@ -8,7 +7,7 @@ import java.util.UUID;
 @RestController
 record UserController(UserService userService) {
 
-    @PostMapping("/user/create")
+    @PostMapping("/user/new")
     public void create(@RequestBody User timur) throws Exception {
         userService.saveOrUpdate(timur);
     }

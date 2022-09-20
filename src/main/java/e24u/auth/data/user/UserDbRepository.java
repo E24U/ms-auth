@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.UUID;
 
 @Repository
@@ -19,9 +20,9 @@ public class UserDbRepository {
     }
 
     public User userById(UUID id) {
-        return jdbc.query("select id, login, password from users where id = ?", (rs, row) -> {
+        return jdbc.query("select u.id, u.login, u.password from users as u left join users_roles ur on u.id = user_id where u.id = ?", (rs, row) -> {
             return new User((UUID.fromString(rs.getString("id"))),
-                    rs.getString("login"), rs.getString("password"));
+                    rs.getString("login"), rs.getString("password"), new HashSet<>());
         }, id).stream().findFirst().orElse(new User());
     }
     public Boolean isContained(String login) {

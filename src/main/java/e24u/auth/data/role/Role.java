@@ -1,12 +1,9 @@
-package e24u.auth.data.user;
+package e24u.auth.data.role;
 
-import e24u.auth.data.role.Role;
 import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @NoArgsConstructor
@@ -15,13 +12,11 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-@Table(name = "users")
-public class User {
+@Table(name = "roles")
+public class Role {
 
     @Id
     @EqualsAndHashCode.Include
     private UUID id;
-    private String login;
-    private String password;
-    private Set<Role> roles = new HashSet<>();
+    private String name;
 }
