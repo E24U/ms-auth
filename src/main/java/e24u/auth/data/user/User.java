@@ -15,7 +15,7 @@ import java.util.UUID;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @ToString
-@Table(name = "users")
+@Table("users")
 public class User {
 
     @Id
